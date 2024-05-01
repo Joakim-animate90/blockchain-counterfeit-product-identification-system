@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express.Router();
+const profileController = require('../controllers/profileController');
+
 app.get('/profileAll', async (req, res)=>{
     const data =  await client.query('Select * from profile');
     res.header('Access-Control-Allow-Credentials', true);
@@ -14,7 +18,8 @@ app.get('/profile/:username', async (req, res)=>{
 
 app.post('/addprofile', (req, res)=>{
     const {username, name, description, website, location, image, role} = req.body;
-    createProfile(username, name, description, website, location, image, role);
+    //createProfile(username, name, description, website, location, image, role);
+    profileController.createProfile(username, name, description, website, location, image, role);
     res.send('Data inserted');
 
 });

@@ -1,13 +1,4 @@
-const { Client } = require('pg');
-const client = new Client({
-    host: "localhost",
-    user: "postgres",
-    port: 5432,
-    password: "postgres",
-    database: "postgres"
-});
-
-client.connect();
+const client = require('../db/db');
 
 const storageProduct = multer.diskStorage({
     destination: path.join(__dirname, 'public/uploads/product'),
@@ -33,4 +24,11 @@ function addProduct(serialNumber, name , brand){
             }
         })
 
+}
+
+
+module.exports = {
+    storageProduct,
+    storageProfile,
+    addProduct
 }

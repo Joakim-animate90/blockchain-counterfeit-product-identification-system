@@ -1,6 +1,10 @@
+const express = require('express');
+const app = express.Router();
+const productController = require('../controllers/productController');
+
 app.post('/upload/product', (req, res)=>{
 
-    let upload = multer({ storage: storageProduct}).single('image');
+    let upload = multer({ storage: productController.storageProduct}).single('image');
 
     upload(req, res, (err)=>{
         if(!req.file){
@@ -33,7 +37,7 @@ app.get('/product/serialNumber', async (req, res)=>{
 
 app.post('/addproduct', (req, res)=>{
     const {serialNumber, name, brand} = req.body;
-    addProduct(serialNumber, name, brand);
+    productController.addProduct(serialNumber, name, brand);
     res.send('Data inserted');
 
 });

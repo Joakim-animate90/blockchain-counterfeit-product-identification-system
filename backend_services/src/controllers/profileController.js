@@ -1,13 +1,4 @@
-const { Client } = require('pg');
-const client = new Client({
-    host: "localhost",
-    user: "postgres",
-    port: 5432,
-    password: "postgres",
-    database: "postgres"
-});
-
-client.connect();
+const client = require('../db/db');
 
 function createProfile(username, name , description, website, location, image, role){
     client.query('INSERT INTO profile (username, name, description, website, location, image, role) VALUES ($1, $2, $3, $4, $5, $6, $7)', 
@@ -19,4 +10,8 @@ function createProfile(username, name , description, website, location, image, r
             }
         })
 
+}
+
+module.exports = {
+    createProfile
 }

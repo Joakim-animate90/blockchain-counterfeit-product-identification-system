@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express.Router();
+const authController = require('../controllers/authController');
+
 app.get('/authAll', async (req, res)=>{
     const data =  await client.query('Select * from auth');
     res.header('Access-Control-Allow-Credentials', true);
@@ -14,13 +18,13 @@ app.post('/auth/:username/:password', async (req, res)=>{
 
 app.post('/addaccount', (req, res)=>{
     const {username, password, role} = req.body;
-    createAccount(username, password, role);
+    authController.createAccount(username, password, role);
     res.send('Data inserted');
 
 });
 
 app.post('/changepsw', (req, res)=>{
     const {username, password} = req.body;
-    changePassword(username, password);
+    authController.changePassword(username, password);
     res.send('Data updated');
 });

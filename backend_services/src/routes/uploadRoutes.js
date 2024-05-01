@@ -1,10 +1,10 @@
 const express = require('express');
-const router = express.Router();
-const uploadController = require('../controllers/uploadController');
+const app = express.Router();
+const profileController = require('../controllers/profileController');
 
 app.post('/upload/profile', (req, res)=>{
 
-    let upload = multer({ storage: storageProfile}).single('image');
+    let upload = multer({ storage: profileController.storageProfile}).single('image');
 
     upload(req, res, (err)=>{
         if(!req.file){
